@@ -70,6 +70,8 @@ resource "azurerm_virtual_machine" "jumpbox" {
     managed_disk_type = "Standard_LRS"
   }
 
+  delete_os_disk_on_termination = true
+
   os_profile {
     computer_name  = "jumpbox"
     admin_username = "${var.admin_username}"
