@@ -1,11 +1,11 @@
 output "azurerm_resource_group_tags" {
   description = "the tags provided for the resource group"
-  value       = "${azurerm_resource_group.azlb.tags}"
+  value       = "${data.azurerm_resource_group.azlb.tags}"
 }
 
 output "azurerm_resource_group_name" {
   description = "name of the resource group provisioned"
-  value       = "${azurerm_resource_group.azlb.name}"
+  value       = "${data.azurerm_resource_group.azlb.name}"
 }
 
 output "number_of_nodes" {

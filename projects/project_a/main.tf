@@ -21,7 +21,7 @@ module "loadbalancer" {
 }
 
 module "computegroup" {
-  source                                 = "Azure/computegroup/azurerm"
+  source                                 = "../../modules/computegroup"
   resource_group_name                    = "${data.azurerm_resource_group.resource_group.name}"
   location                               = "${data.azurerm_resource_group.resource_group.location}"
   vm_size                                = "Standard_D2s_v3"
