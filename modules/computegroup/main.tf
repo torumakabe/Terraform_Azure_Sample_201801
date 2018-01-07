@@ -7,15 +7,11 @@ module "os" {
   vm_os_simple = "${var.vm_os_simple}"
 }
 
-data "azurerm_resource_group" "vmss" {
-  name = "${var.resource_group_name}"
-}
-
 resource "azurerm_virtual_machine_scale_set" "vm-linux" {
   count               = "${ contains(list("${var.vm_os_simple}","${var.vm_os_offer}"), "WindowsServer") ? 0 : 1 }"
   name                = "${var.vmscaleset_name}"
   location            = "${var.location}"
-  resource_group_name = "${data.azurerm_resource_group.vmss.name}"
+  resource_group_name = "${var.resource_group_name}"
   upgrade_policy_mode = "Manual"
   tags                = "${var.tags}"
 
@@ -91,7 +87,7 @@ resource "azurerm_virtual_machine_scale_set" "vm-windows" {
   count               = "${ contains(list("${var.vm_os_simple}","${var.vm_os_offer}"), "WindowsServer") ? 1 : 0 }"
   name                = "${var.vmscaleset_name}"
   location            = "${var.location}"
-  resource_group_name = "${data.azurerm_resource_group.vmss.name}"
+  resource_group_name = "${var.resource_group_name}"
   upgrade_policy_mode = "Manual"
   tags                = "${var.tags}"
 
